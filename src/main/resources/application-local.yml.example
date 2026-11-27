@@ -1,0 +1,27 @@
+# 本地/演示环境配置示例
+# 用法：复制本文件为 application-local.yml，并填入你自己的密码。
+# application-local.yml 已被 .gitignore 忽略，不会提交到仓库。
+server:
+  port: 8082
+
+spring:
+  datasource:
+    # 你的 MySQL root 密码（或改用环境变量 DB_PASSWORD）
+    password: your-mysql-password
+  redis:
+    host: localhost
+    port: 6379
+    # 若 Redis 开启了 requirepass 就填上，未开启则删掉这一行（或改用 REDIS_PASSWORD）
+    password: your-redis-password
+
+petcare:
+  auth:
+    # 本地/演示环境允许免验证码切换身份；生产环境必须删除或设为 false
+    dev-login-enabled: true
+  ai:
+    # 本地调试可填自己的 DeepSeek Key；留空则用 Python Agent 或本地模板回答
+    api-key: ${DEEPSEEK_API_KEY:}
+    # 启动 ai-service 后走 Python Agent，没启动会自动降级到本地 RAG
+    enabled: ${AI_SERVICE_ENABLED:true}
+    service-url: http://localhost:8000
+    internal-token: ${INTERNAL_TOKEN:petcare-internal-token}

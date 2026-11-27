@@ -1,0 +1,13 @@
+target
+.idea
+*.iml
+.git
+frontend/node_modules
+frontend/dist
+src/main/resources/application-local.yml
+
+ai-service/.venv
+ai-service/__pycache__
+ai-service/.env
+ai-service/*.log
+
